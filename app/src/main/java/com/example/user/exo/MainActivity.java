@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> entries = new ArrayList<String>(Arrays.asList(mid));
 
         final ArrayAdapter<String> midList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, entries);
+        midList.setNotifyOnChange(true);
         final ListView list = (ListView) findViewById(R.id.listView1);
         list.setAdapter(midList);
 
@@ -45,14 +46,9 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                midList.setNotifyOnChange(true);
-
                 midList.add(edtItem.getText().toString());
-
                 edtItem.setText("");
-
                 list.setSelection(midList.getCount() - 1);
-
             }
         });
 
