@@ -17,7 +17,7 @@ public class SpinnerTest extends AppCompatActivity {
 
     int[] resIdList = new int[61];
     String[] resSubList = new String[resIdList.length];
-
+    //
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
