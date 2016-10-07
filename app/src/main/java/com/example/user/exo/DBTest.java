@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,11 @@ public class DBTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dblayout);
+        Log.i(" info", "log i2");
+        Log.d(" debug", "log d2");
+        Log.v(" verbose", "log v2");
+        Log.w(" warring", "log w2");
+        Log.e(" error", "log e2");
 
         tvPrint = (TextView) findViewById(R.id.tvPrint);
         tvPrint.setText("");
@@ -29,20 +35,22 @@ public class DBTest extends AppCompatActivity {
         String tableName = "myTable";
         String columnQuery = "myStr TEXT";
 
-        MyDBHelper mDBHelper = new MyDBHelper(this, dbName, tableName, columnQuery);
+        MyDBHelper dbHelper = new MyDBHelper(this, dbName, tableName, columnQuery);
 
-        // SQLiteDatabase db = mDBHelper.getWritableDatabase(); // write 다할수있음
-        // db.execSQL("INSERT INTO " + tableName + " VALUES(null, '점심시간')");
+        // dbHelper.insert("점심이냐");
+        // dbHelper.update("myStr", "ㅇㅇ", "id", "2");
+        dbHelper.delete("id", "2");
 
-        String result[] = mDBHelper.selectAll();
+        String result[] = dbHelper.selectAll();
         addPrint(" - - printStart");
         addPrint(" - - resultLen : " + result.length);
         for(String str : result) {
             addPrint(str);
         }
+
         addPrint(" - - printEnd");
 
-        mDBHelper.close();
+        dbHelper.close();
 
     }
 
